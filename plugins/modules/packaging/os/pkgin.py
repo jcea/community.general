@@ -309,7 +309,7 @@ def do_upgrade_packages(module, full=False):
         format_pkgin_command(module, cmd))
 
     if rc == 0:
-        if re.search('^nothing to do.\n$', out):
+        if re.search('^(.*\n|)nothing to do.\n$', out):
             module.exit_json(changed=False, msg="nothing left to upgrade")
     else:
         module.fail_json(msg="could not %s packages" % cmd)
